@@ -1,10 +1,34 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
+
+from algos.bsm import bsm
+
+class BsmRequest(BaseModel):
+    stock_price: float
+    strike_price: float
+    rate: float
+    time: float
+    volatility: float
+    dividend: float
+
+class BsmResponse(BaseModel):
+    call: str
+    put: str
 
 router = APIRouter(
     prefix="/bsm",
     tags=["bsm"],
 )
 
-@router.get("/test")
-def health_check():
-    return {"status": "test"}
+@router.post("/calculate", response_model=BsmResponse)
+async def calculate(request: BsmRequest):
+    call, put = bsm(
+        request.strike_price,
+        request.strike_price,
+        request.rate,
+        request.time,
+        request.volatility,
+        request.dividend
+    )
+
+    return BsmResponse(call=call,put=put)
