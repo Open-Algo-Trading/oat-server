@@ -1,7 +1,6 @@
+from algorithms.bsm import bsm
 from fastapi import APIRouter
 from pydantic import BaseModel
-
-from algos.bsm import bsm
 
 class BsmRequest(BaseModel):
     stock_price: float
