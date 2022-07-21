@@ -1,4 +1,4 @@
-from algorithms.bsm import bsm
+from algos.bsm import bsm
 from fastapi import APIRouter
 from pydantic import BaseModel
 
