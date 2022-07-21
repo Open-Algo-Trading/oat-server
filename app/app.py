@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/opt/open-algo-trading/oat-server')
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
