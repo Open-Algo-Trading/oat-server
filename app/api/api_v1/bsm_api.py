@@ -1,8 +1,15 @@
-from algos.bsm import bsm
 from fastapi import APIRouter
+from algos.bsm import bsm
 from pydantic import BaseModel
 
-class BsmRequest(BaseModel):
+
+router = APIRouter(
+    prefix="/bsm",
+    tags=["bsm"],
+)
+
+
+class BsmRequest(BaseModel):  #TODO: refactor into schemas directory
     stock_price: float
     strike_price: float
     rate: float
@@ -10,14 +17,11 @@ class BsmRequest(BaseModel):
     volatility: float
     dividend: float
 
-class BsmResponse(BaseModel):
+
+class BsmResponse(BaseModel):  #TODO: refactor into schemas directory
     call: str
     put: str
 
-router = APIRouter(
-    prefix="/bsm",
-    tags=["bsm"],
-)
 
 @router.post("/calculate", response_model=BsmResponse)
 async def calculate(request: BsmRequest):
