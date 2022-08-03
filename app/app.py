@@ -11,10 +11,8 @@ app = FastAPI()
 prefix = "/api/v1/algos"
 
 origins = [
-    "https://localhost:3000",
-    "http://localhost:3000",
-    "http://localhost",
-    "http://localhost:8080",
+    "https://localhost:3000",  # dev
+    "http://159.65.87.227",  # prod
 ]
 
 app.add_middleware(
